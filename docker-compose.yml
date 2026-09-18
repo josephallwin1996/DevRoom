@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: devroom-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: devroom
+      POSTGRES_USER: devroom
+      POSTGRES_PASSWORD: devroom_dev_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - devroom-postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:8
+    container_name: devroom-redis
+    restart: unless-stopped
+
+    ports:
+      - "6379:6379"
+
+    volumes:
+      - devroom-redis-data:/data
+
+volumes:
+  devroom-postgres-data:
+  devroom-redis-data:
